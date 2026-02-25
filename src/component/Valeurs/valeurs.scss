@@ -1,0 +1,153 @@
+.sous-container-valeurs{ 
+    margin-bottom: 30px;
+
+    .grid { 
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        place-items: Center;
+
+        .gauche{
+
+            .contenair-image{
+                width: 400px;
+                height: 375px;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50% 50% 0 5px;
+                    padding: 10px 0 0 10px;
+                    background-color: rgb(236, 160, 18);
+                    transition: transform 0.5s ease, box-shadow 0.5s ease;
+                      &:hover {
+               transform: scale(1.07) rotate(-1deg);
+             box-shadow: 0px 10px 20px rgba(232, 235, 71, 0.952);
+  }
+          }
+            }
+        }
+                        .droit{
+
+                            .titre{
+                              color: rgb(10, 187, 49) ;
+                             font-size: 16px;
+                               font-weight: 700;
+                               margin-bottom: 40px;
+                                animation: slideDown 0.8s forwards;
+                             }
+
+                                .liste-valeurs{
+                                 display: flex;
+                                 flex-flow: column;
+                                 gap: 25px;
+
+                                 .item{
+                                  border-radius: 10px; 
+                                   padding: 4px 8px;
+                                   height: 30px;
+                                   cursor: pointer;
+                                   overflow: hidden;
+                                  transition: all 0.5s ease-in-out;
+                                  box-shadow: 0px 0px 5px 1px rgb(252, 255, 62);
+
+
+                                  &.active{
+                                    height: 110px;
+                                   }
+
+                               &:hover {
+                              transform: scale(1.03);
+                               box-shadow: 0px 0px 15px 3px rgb(252, 255, 62);
+                                  }
+                                }
+                                        .head{
+                                         display: flex;
+                                          align-items: center;
+                                         justify-content: space-between;
+                                         margin-bottom: 15px;
+                                         position : relative;
+
+                                         &::before{
+                                           content: "";
+                                          position: absolute;
+                                         width: 100%;
+                                         height: 2px;
+                                         background : linear-gradient(to right,transparent,rgb(214, 224, 66),transparent);
+                                         bottom: -8px;
+                                         }
+                                         
+                                          span {
+                                         font-weight: 600;
+                                          animation: fadeIn 1s forwards;
+                                         }
+          
+                                        }
+
+                                        .valeur-icon{
+                                         width: 20px;
+                                         height: 20px;
+                                         color: rgb(238, 149, 34);
+                                          transition: transform 0.3s ease;
+                                           &:hover {
+                                             transform: rotate(15deg) scale(1.2);
+                                             }
+                                        }
+
+                                        .description{
+                                          margin: 10px;
+                                          opacity: 0.7;
+                                          animation: fadeIn 1s 0.5s forwards;
+                                        }
+        
+                        }
+                    .sous-titre{
+                      margin : 10px 0 25px 0;
+                      font-size: 35px;
+                      animation: typing 1S s;
+                      animation: typing 2s steps(30, end) forwards;
+                      
+                    }   
+                    .description-valeurs{
+                      margin-bottom: 25px;
+                      color: rgb(155, 187, 113);
+                     animation: typing 1s 0.5s forwards;
+                       animation: colorChange 4s infinite linear;
+}
+
+   
+                    }    
+           } 
+        }
+    /* Animations cléframes */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+           @keyframes colorChange {
+  0%   { color: #4caf78; }
+  25%  { color: #00e5ff; }
+  50%  { color: #ff9800; }
+  75%  { color: #e91e63; }
+  100% { color: #4caf78; }
+}

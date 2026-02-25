@@ -1,0 +1,100 @@
+.sous-contenair-produit{
+    .titre{
+        font-size: 18px;
+        font-weight: 700;
+        color: #0cad14;
+    }
+    .sous-titre{
+        font-size: 35px;
+        color: #ebc90e;
+        margin: 10px 0 45px 0;
+        position: relative;
+
+        &::before{
+            content: "";
+            position: absolute;
+            width: 370px;
+            height: 2px;
+            background:linear-gradient(to right, transparent, #afbb08, transparent);
+            bottom: -5px;
+            border-radius: 50%;
+            left: 0;
+        }
+    }
+        .carte-slide{
+         white-space: nowrap;
+         overflow: hidden;
+
+            .suivi-slide{
+              display: inline-block;
+              animation: scolling 15s  infinite linear;
+            }
+            .carte-article{
+              width: 250px;
+             margin: 0 20px;
+             display: inline-block;  
+             position: relative;
+             text-align: center;
+
+             img{
+              width: 100%;
+             height: 200px;
+             border-radius: 26px;  
+             background-color: white;
+              transition: transform 0.5s ease, box-shadow 0.5s ease;
+                      &:hover {
+               transform: scale(1.07) rotate(-1deg);
+             box-shadow: 0px 10px 20px rgba(235, 182, 8, 0.952);
+  }
+              }
+
+             .details{
+             color: black;
+             margin-top: 15px;
+             background: rgb(243, 255, 253);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+             transition: transform 0.5s ease, box-shadow 0.5s ease;
+                      &:hover {
+               transform: scale(1.07) ;
+             box-shadow: 0px 10px 20px rgba(82, 252, 82, 0.952);
+                      }
+
+             
+                p.description{
+                 white-space: normal;
+                  opacity: 0.5;
+                 font-size: 14px;
+                
+                 }
+                 .prix{
+              font-size: 20px;
+              font-weight: 600;
+               color: #f1a809;
+               position: absolute;
+               top: 165px;
+              right: 5px ;
+              background-color: white;
+              padding: 5px 8px;
+               border-radius: 8px;
+             }
+                 h4.nom{
+                    margin:10px 0 ;
+                    font-size: 25px;
+                     
+                 }
+           }
+            
+
+        }
+    }
+}
+   @keyframes scolling {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}

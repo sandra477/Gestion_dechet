@@ -1,0 +1,41 @@
+.sous-contenair-contact{
+    background-color: rgb(2, 32, 15);
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+
+    &::before{
+        content: "";
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        top: -50px;
+        left: 0;
+        background-color: rgb(2, 32, 15);
+        border-radius: 50%;
+        z-index: -1;
+    }
+    .top{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        place-content: center;
+        margin-bottom: 15px;
+
+        .social-icon{
+            width: 30px;
+            height: 30px;
+            padding: 1px 0 0 4px;
+            margin-top: -15px;
+            background-color: green;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+    }
+    .bottom{
+        opacity: 0.7;
+        font-size: 14px;
+    }
+
+}

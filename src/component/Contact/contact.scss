@@ -1,0 +1,181 @@
+.sous-container-contact{
+
+    .titre{
+        color: rgb(116, 248, 112);
+        font-weight: 700;
+    }
+    .sous-titre{
+        font-size: 35px;
+        color: rgb(235, 184, 17);
+        margin: 10px 0 45px 0;
+        position: relative;
+
+        &::before{
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 350px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(to right,transparent,rgb(110, 79, 20),transparent);
+        }
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+
+        .gauche{
+
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                border: 2px solid rgb(6, 180, 58);
+                border-radius: 8px;
+                padding: 50px;
+                width: 100%;
+                 transition:  0.3s ease-in-out;
+                
+
+              &:hover{
+           transform: scale(1.05) ;
+            background-color: 0 10px 20px rgba(0, 0, 1, 0.25);
+            box-shadow: 0px 0px 15px 3px rgb(255, 161, 19)
+            }
+                
+
+                .nom,.email,.message{
+                    display: flex;
+                    flex-flow: column;
+                    color: rgb(194, 163, 95);
+
+
+                    input{
+                        border: 1px solid rgb(38, 128, 83);
+                        padding: 10px;
+                        outline: none;
+                        border-radius: 4px;
+                    }
+                    label{
+                        margin-bottom: 5px;
+                    }
+                    textarea{
+                         border: 1px solid rgb(38, 128, 83);
+                        padding: 10px;
+                        outline: none;
+                        border-radius: 4px;
+                    }
+                }
+
+                button{
+                    padding: 8px 10px;
+                    font-size: 17px;
+                    outline: none;
+                    border: 2px solid rgb(180, 148, 5);
+                    background-color: rgb(2, 29, 15);
+                    color: white;
+                    width: 50%;
+                    cursor: pointer;
+                    margin-top:10px;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+    .droite{
+        
+        .contenair-image{
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            position: relative;
+
+            .image-un{
+                width: 600px;
+                height: 450px;
+                border-radius: 150px; 
+                overflow: hidden;
+
+                img{
+               width:  100%;
+               height: 100%;
+                }
+            }
+            .image-deux{
+                height: 200px;
+                width: 200px;
+                border-radius: 50% ;
+                margin-top: 50px 0 0 0;
+            }
+            .image-trois{
+                position: absolute;
+                bottom: 80px;
+                right: 100px;
+                height: 90px;
+                width: 80px ;
+                border-radius: 50% ;
+            }
+
+        }
+    }
+}
+.sous-container-contact {
+
+  /* Tous les éléments interactifs du formulaire */
+  form input,
+  form textarea,
+  form button {
+
+    transition: all 0.3s ease; /* transition douce pour hover/tap */
+
+    &:hover,
+    &:focus {
+      transform: scale(1.05); /* léger agrandissement */
+      box-shadow: 0 4px 15px rgba(64, 167, 5, 0.884); /* ombre subtile */
+      border-color: rgb(116, 248, 112);
+    }
+  }
+
+  /* Animation pour le bouton */
+  form button {
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+      background-color: rgb(116, 248, 112);
+      border-color: rgb(241, 163, 16);
+    }
+  }
+
+  /* Images réactives dans .droite */
+  .contenair-image {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+
+    .image-un,
+    .image-deux,
+    .image-trois {
+      transition: all 0.3s ease;
+      cursor: pointer; /* montre que c'est interactif */
+
+      &:hover,
+      &:active {
+        transform: scale(1.05) ;
+         box-shadow: 0px 0px 15px 3px rgb(255, 161, 19);
+      }
+    }
+  }
+
+  /* Sensibilité au toucher mobile avec pseudo :active */
+  form input:active,
+  form textarea:active,
+  form button:active,
+  .contenair-image .image-un:active,
+  .contenair-image .image-deux:active,
+  .contenair-image .image-trois:active {
+    transform: scale(1.07);
+    box-shadow: 0 6px 18px rgb(47, 139, 4);
+  }
+}

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Gestion Déchets Douala</title>
+<style>
+body{
+    margin:0;
+    border-radius:15px;
+    font-family:Arial;
+    background:#b9f3bc
+}
+.layout{display:flex;
+    height:100vh
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    background-image:url("WhatsApp Image 2026-02-23 at 00.01.27.jpeg");
+    color:white;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between
+}
+.logo{
+    display:flex;
+    gap:10px;
+    align-items:center;margin-bottom:20px
+}
+a{
+    
+    color: #fff;
+    margin: 0;
+    text-decoration: none;
+
+}
+.logo img{
+    width:40px;
+    border-radius:50%
+}
+nav ul{
+    list-style:none;
+    padding:0
+}
+nav li{
+    padding:10px;
+    border-radius:10px;
+    margin:5px 0
+}
+nav li.active{
+    background:#ffffff22
+}
+.profile{
+    display:flex
+    ;gap:10px;
+    align-items:center;
+    margin-top:20px
+}
+.profile img{
+    width:40px;
+    border-radius:50%
+}
+.logout{
+    background:#ff5252;
+    border:none;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    margin-top:10px
+}
+
+/* DASHBOARD */
+.dashboard{flex:1;padding:25px;overflow:auto}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.header button{background:#0f6b5e;color:white;border:none;padding:10px 20px;border-radius:10px}
+
+/* TOP STATS */
+.top-stats{display:flex;gap:20px;margin-bottom:20px}
+.stat{flex:1;align-items: left;background:rgb(223, 252, 223);padding:20px;border-radius:15px;display:flex;justify-content:space-between}
+.mini-bars{display:flex;align-items:flex-end;height:50px;gap:5px}
+.mini-bars div{width:6px;background:#22c55e;border-radius:3px;height:0}
+.red div{background:#ef4444}
+
+/* MIDDLE */
+.row-middle {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .big-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 16px;
+        }
+
+        .big-number .percent {
+            font-size: 28px;
+        }
+
+        /* GAUGE */
+        .gauge {
+            width: 160px;
+            height: 80px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .gauge svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .gauge-bg {
+            fill: none;
+            stroke: #829794;
+            stroke-width: 20px;
+        }
+
+        .gauge-progress {
+            fill: none;
+            stroke: #4ade80;
+            stroke-width: 20;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        .gauge-progress.dark {
+            stroke: #4ade80;
+        }
+
+        .gauge-label {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #aeb4b4;
+        }
+
+        /* LIST */
+        /* LIST */
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .list-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #374151;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot.blue { background: #4ade80; }
+        .dot.cyan { background: #22d3ee; }
+        .dot.orange { background: #fbbf24; }
+
+        .list-value {
+            font-weight: 600;
+            color: #111;
+        }
+
+        .btn-view {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-view:hover {
+            background: #f9fafb;
+        }
+          /* MAP CARD */
+        .map-card {
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            color: #9ca3af;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .map-area {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #dbeafe 0%, #6c85a1 100%);
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+
+        .map-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+
+
+
+        .label-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1a4d4d;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .label-box .big {
+            font-size: 20px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .info-box {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .zone{
+       fill:#bfdbfe;
+       transition:0.3s;
+      cursor:pointer;
+    }
+
+     .zone:hover{
+       fill:#f97316;
+}
+
+        .zones-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .zone-row {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        /* BOTTOM ROW - 4 cards: long, small, small, long */
+        .row-bottom {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1fr 2.2fr;
+            gap: 20px;
+        }
+
+        .dark-card {
+            background: #64f5f5;
+            color: white;
+        }
+
+        .circle-badge {
+            width: 56px;
+            height: 56px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a4d4d;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            position: relative;
+        }
+          .arrow {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .brand-icon {
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .brand-text {
+            font-size: 140px;
+            font-weight: 600;
+
+        }
+
+        .heading {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .people {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .avatars {
+            display: flex;
+        }
+
+        .avatar {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #1a4d4d;
+            margin-left: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+
+        .row-top {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgb(243, 255, 253);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-label {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .card-value .unit {
+            font-size: 16px;
+            font-weight: 400;
+            color: #6b7280;
+        }
+
+        .card-change {
+            font-size: 10px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .card-change::before {
+            content: '▲ ';
+            color: #22c55e;
+            font-size: 9px;
+        }
+
+        .mini-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 40px;
+        }
+
+        .bar {
+            flex: 1;
+            background: #4ade80;
+            opacity: 0.75;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .bar.orange {
+            background: #f97316;
+        
+        }
+        .card,.stat{
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.7s;
+}
+
+.card.show, .stat.show{
+    opacity:1;
+    transform:translateY(0);
+}
+.card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+/* ANIMATION COMMUNITY */
+.community {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: 0.8s ease;
+}
+
+.community.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.community .heading {
+    animation: floatText 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatText {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+}
+
+.tag {
+    transition: 0.3s;
+}
+
+.tag:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.25);
+}
+
+.people span {
+    font-weight: bold;
+}
+/* =========================
+   ANIMATION ADD WIDGET
+========================= */
+.header button{
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.header button:hover{
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* effet lumière */
+.header button::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+    transition:0.5s;
+}
+
+.header button:hover::before{
+    left:100%;
+}
+
+/* =========================
+   ANIMATION LOGOUT
+========================= */
+.logout{
+    position:relative;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.logout:hover{
+    transform:scale(1.07);
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.logout:active{
+    transform:scale(0.9);
+}
+
+/* loading animation */
+.logout.loading{
+    background:#999 !important;
+    pointer-events:none;
+}
+
+.logout.loading::after{
+    content:"...";
+    margin-left:8px;
+    animation:dots 1s infinite;
+}
+
+@keyframes dots{
+    0%{content:".";}
+    50%{content:"..";}
+    100%{content:"...";}
+}
+
+
+
+
+/* CIRCLE */
+.circle{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:#0b2f2b}
+.circle::before{content:"";position:absolute;width:65px;height:65px;background:#f3f5f4;border-radius:50%}
+.circle span{position:relative;font-weight:bold}
+.orange{--color:#ff8c00}
+.green{--color:#22c55e}
+
+/* BOTTOM */
+.bottom{display:flex;gap:20px;margin-bottom:20px;align-items:flex-start}
+.bottom-left{display:flex;flex-direction:column;gap:20px;width: 600px;height: 10px;}
+.info{background:#021f17;padding:20px;border-radius :990px;;display:flex;gap:15px;align-items:center}
+.info2{background:#dff7ef;padding:20px;border-radius:990px;display:flex;gap:15px;align-items:center}
+.community{flex:1;max-width:1000px;height: 100%;background-image:url("WhatsApp Image 2026-02-23 at 17.38.35.jpeg");background-size:cover;padding:20px;border-radius:15px;position:relative;color:white;display:flex;flex-direction:column;justify-content:center;align-items:right;text-align:left}
+.community .arrow{position:absolute;top:10px;right:15px;font-size:20px}
+.community .avatars{display:flex;gap:5px;margin-top:10px}
+.community .avatars img{width:30px;border-radius:50%}
+  h3{
+    opacity: 0.5;
+      margin-right: 10px;
+      font-size: 15px;
+      left:13px;
+      top:20px;
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div>
+<div class="logo"><img src="ChatGPT Image 29 janv. 2026, 23_49_04.png"><h2> SC2R</h2></div>
+<nav>
+<ul>
+<li class="active">Dashboard</li>
+<li><a href="#">Analytics</a></li>
+<li><a href="#">Carte Déchets Douala</a></li>
+<li><a href="#">Signalement</a></li>
+<li><a href="/connexion.html">Entreprises Clientes</a></li>
+<li><a href="/connexion.html">Entreprises Recyclage</a></li>
+<li><a href="#">Rapports</a></li>
+<li><a href="#">Support</a></li>
+</ul>
+</nav>
+</div>
+<div>
+<div class="profile"><img src="ChatGPT Image 13 févr. 2026, 23_20_54 (1).png"><div><b>Sandrine</b><p>Admin Douala</p></div></div>
+ <a href="index.html" class="logout">Déconnexion</a>
+</div>
+</aside>
+
+<!-- DASHBOARD -->
+<main class="dashboard">
+<div class="header"><h1>Dashboard</h1><button> Add Widget</button></div>
+
+<!-- TOP STATS -->
+<div class="row-top">
+    <div class="card">
+                    <div class="card-label">Niveau Déchets Collectés</div>
+                    <div class="card-value">35.05 <span class="unit">tonnes</span></div>
+                    <div class="card-change">5.3% vs mois dernier</div>
+                    <div class="mini-bars">
+                        <div class="bar" style="height: 60%"></div>
+                        <div class="bar" style="height: 80%"></div>
+                        <div class="bar" style="height: 45%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                        <div class="bar" style="height: 90%"></div>
+                    </div>
+                </div>
+             
+         <div class="card">
+                    <div class="card-label">Taux de Recyclage</div>
+                    <div class="card-value">75.50<span class="unit">/100%</span></div>
+                    <div class="card-change">1.5% vs mois dernier</div>
+                    <div class="mini-bars">
+                        <div class="bar orange" style="height: 50%"></div>
+                        <div class="bar orange" style="height: 70%"></div>
+                        <div class="bar orange" style="height: 55%"></div>
+                        <div class="bar orange" style="height: 80%"></div>
+                        <div class="bar orange" style="height: 65%"></div>
+                    </div>
+                </div>
+               
+              <div class="card">
+                    <div class="card-label">Budget Traitement Déchets</div>
+                    <div class="card-value">967,570 FCFA</div>
+                    <div class="card-change">9.1% vs mois dernier</div>
+                    <div class="mini-bars">
+                        <div class="bar" style="height: 55%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                        <div class="bar" style="height: 85%"></div>
+                        <div class="bar" style="height: 65%"></div>
+                        <div class="bar" style="height: 95%"></div>
+                    </div>
+                </div>
+</div>
+
+
+<!-- MIDDLE -->
+ <section class="row-middle">
+    <div class="stat">
+        <div class="card">
+        <div class="card-label">Niveau de Tri</div>
+        <div class="big-number">72<span class="percent">%</span></div>
+        <div class="gauge">
+        <svg viewBox="0 0 160 85">
+            <path class="gauge-bg" d="M 18,80 A 62,62 0 0,1 142,80" />
+            <path class="gauge-progress" d="M 18,80 A 62,62 0 0,1 142,80" 
+                                  style="stroke-dasharray: 195; stroke-dashoffset: 58.5" />
+                            <path class="gauge-progress dark" d="M 18,80 A 62,62 0 0,1 142,80" 
+                                  style="stroke-dasharray: 195; stroke-dashoffset: 136.5" />
+                        </svg>
+                        <div class="gauge-label">Objectif Indice: 2%</div>
+                    </div>
+                </div>
+                </div>
+    
+                   <div class="stat"><div class="card">
+                    <div class="card-label">Types de Déchets</div>
+                   <div class="big-number" data-target="86">
+                     <span class="count">0</span><span class="percent">%</span>
+                   </div>
+                    <div class="list">
+                        <div class="list-row">
+                            <div class="list-label">
+                                <span class="dot blue"></span>
+                                <span>Plastiques</span>
+                            </div>
+                            <div class="list-value">52%</div>
+                        </div>
+                        <div class="list-row">
+                            <div class="list-label">
+                                <span class="dot cyan"></span>
+                                <span>Cartons</span>
+                            </div>
+                            <div class="list-value">25%</div>
+                        </div>
+                        <div class="list-row">
+                            <div class="list-label">
+                                <span class="dot orange"></span>
+                                <span>Organiques</span>
+                            </div>
+                            <div class="list-value">23%</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-view">View Details</button>
+                </div>
+            </div>
+                  <div class="stat">
+                    <div class="card map-card">
+                    <div class="card-label">Déchets Entreprises Douala</div>
+                    <div class="subtitle">Pourcentage de déchets collectés par zone industrielle</div>
+                    
+                    <div class="map-area">
+                        <img src="WhatsApp Image 2026-02-23 17.38.36.jpeg" alt="" style="width: 99%; height: 99%;float:left;margin-right:10px;">
+                        
+                        <div class="label-box">
+                            Bonanjo<br>
+                            <span class="big">89%</span>
+                        </div>
+                        
+                        <div class="info-box">103,096 kg - 49%</div>
+                    </div>
+                    <div class="zone"><div class="zones-list">
+                        <div class="zone-row">🔸 Bonanjo - 89%</div>
+                        <div class="zone-row">🔸 Akwa - 82%</div>
+                        <div class="zone-row">🔸 Bonaberi - 80%</div>
+                        <div class="zone-row">🔸 Bépanda - 80%</div>
+                        <div class="zone-row">🔸 Bassa - 78%</div>
+                        <div class="zone-row">🔸 Makepe - 75%</div>
+                    </div>
+                </div>
+                    
+                </div>
+                  </div>
+            </section>
+
+
+<!-- BOTTOM -->
+<div class="bottom">
+<div class="bottom-left">
+<div class="info">
+    <div class="circle orange" data-target="76">
+    <span>0%</span>
+</div>
+    <div >
+        <h3 style="color:white;">Indice Impact Déchets</h3>
+        <h4 style="color:white;">Impact des déchets sur l'environnement</h4>
+    </div></div>
+<div class="info2">
+    <div class="circle green" data-target="57">
+    <span>0%</span>
+   </div>
+    <div><h3>Niveau Wouri<h3>
+        <h4>Niveau actuel fleuve Wouri, méthodes</h4>
+    </div></div>
+</div>
+            
+
+                <div class="community">
+                    <div class="arrow">↗</div>
+                    
+                    <div class="brand">
+                        <div class="brand-icon">
+                            <img src="ChatGPT Image 29 janv. 2026, 23_49_04.png" width="50px" style="border-radius: 50%;">
+                        </div>
+                        <div class="brand-text">
+                            <h3 style="margin-right: 100px;
+      font-size: 15px;
+      left:100%;
+      top:20px;"> Société de collecte et <br>
+            de recuperation pour le recyclage</h3> 
+
+                        </div>
+                    </div>
+                    
+                    <div class="heading">Rejoignez notre<br>communauté</div>
+                    
+                    <div class="tags">
+                        <button class="tag">Elderly Activity</button>
+                        <button class="tag">Sweet Belarus</button>
+                    </div>
+                    
+                    <div class="people">
+                        <div class="avatars">
+                            <div class="avatar">😊</div>
+                            <div class="avatar">👤</div>
+                            <div class="avatar">👤</div>
+                        </div>
+                        <span>250+ people</span>
+                    </div>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ========= MINI BARRES ========= */
+    document.querySelectorAll(".mini-bars div").forEach((bar,i)=>{
+        let h = bar.style.height;
+        bar.style.height="0";
+        setTimeout(()=>{
+            bar.style.transition="0.7s";
+            bar.style.height=h;
+        }, i*120);
+    });
+
+    /* ========= JAUGE ========= */
+    document.querySelectorAll(".gauge-progress").forEach(g=>{
+        let offset = g.style.strokeDashoffset;
+        g.style.strokeDashoffset="195";
+        setTimeout(()=> g.style.strokeDashoffset=offset ,300);
+    });
+
+    /* ========= COMPTEURS ========= */
+    document.querySelectorAll("[data-target]").forEach(el=>{
+        let target = parseInt(el.dataset.target);
+        let count = 0;
+
+        let counter=setInterval(()=>{
+            count++;
+
+            if(el.classList.contains("circle")){
+                let deg = count*3.6;
+                let color = getComputedStyle(el).getPropertyValue("--color");
+                el.style.background =
+                    `conic-gradient(${color} ${deg}deg, #0b2f2b ${deg}deg)`;
+                el.querySelector("span").innerText=count+"%";
+            }else{
+                el.querySelector(".count").innerText=count;
+            }
+
+            if(count>=target) clearInterval(counter);
+
+        },20);
+    });
+
+    /* ========= ANIMATION CARTES ========= */
+    let observer = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting) e.target.classList.add("show");
+        });
+    });
+
+    document.querySelectorAll(".card,.stat,.community")
+        .forEach(el=>observer.observe(el));
+
+    /* ========= ADD WIDGET QUI FONCTIONNE ========= */
+    let addBtn = document.querySelector(".header button");
+    let rowTop = document.querySelector(".row-top");
+
+    if(addBtn && rowTop){
+        addBtn.addEventListener("click",function(){
+
+            let widget=document.createElement("div");
+            widget.className="card show";
+            widget.innerHTML=`
+                <div class="card-label">Nouveau Widget</div>
+                <div class="card-value">${Math.floor(Math.random()*100)}%</div>
+                <div class="card-change">Ajout automatique</div>
+                <div class="mini-bars">
+                    <div class="bar" style="height:${30+Math.random()*60}%"></div>
+                    <div class="bar" style="height:${30+Math.random()*60}%"></div>
+                    <div class="bar" style="height:${30+Math.random()*60}%"></div>
+                    <div class="bar" style="height:${30+Math.random()*60}%"></div>
+                </div>
+            `;
+
+            rowTop.appendChild(widget);
+
+            /* animer mini barres du nouveau widget */
+            widget.querySelectorAll(".mini-bars div").forEach((bar,i)=>{
+                let h=bar.style.height;
+                bar.style.height="0";
+                setTimeout(()=> bar.style.height=h , i*120);
+            });
+
+            /* texte bouton */
+            addBtn.innerText="Widget ajouté ✔";
+            setTimeout(()=> addBtn.innerText="Add Widget",1500);
+        });
+    }
+
+    /* ========= LOGOUT ========= */
+    let logoutBtn=document.querySelector(".logout");
+
+    if(logoutBtn){
+        logoutBtn.addEventListener("click",function(e){
+            e.preventDefault();
+            this.classList.add("loading");
+
+            setTimeout(()=>{
+                window.location.href=this.getAttribute("href");
+            },1500);
+        });
+    }
+
+});
+/* ========= COMMUNITY PEOPLE ========= */ 
+
+let people=document.querySelector(".people span");
+ if(people){ let target=250;
+  let c=0; let int=setInterval(()=>{ c+=5; people.innerText=c+"+ people";
+   if(c>=target){ people.innerText=target+"+ people"; clearInterval(int); } },30);
+   
+   } ;
+</script>
+
+</body>
+</html>

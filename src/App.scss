@@ -1,0 +1,95 @@
+.app{
+
+    .contenair-acceuil {
+      position: relative;
+      display: flex;
+     justify-content: center;
+     align-items: center;
+     padding-bottom: 20px;
+     overflow: hidden;
+
+  /* Image de fond */
+     background-image: url('src/assets/image/ChatGPT Image 13 févr. 2026, 23_20_54 (1).png');
+     background-size: cover; 
+    /* l’image remplit tout le conteneur */
+      background-position: center;
+       background-repeat: no-repeat;
+        /* Bordure inférieure arrondie */
+       border-bottom-left-radius: 50% 20%;
+       border-bottom-right-radius: 50% 20%;
+
+     
+
+    .acceuil {
+      max-width: 1366px;
+      width: 80%;
+   
+     }
+
+    
+    }
+    .contenair-produit{
+        margin-top: 95px;
+        margin-bottom: 95px;
+        display: flex;
+        justify-content: center;
+        
+
+        .produit{
+            width: 80%;
+            max-width: 1366px;
+        }
+   }
+    .contenair-valeurs {
+      background-color: rgb(2, 32, 15);
+      display: flex;
+      justify-content: center;
+       position: relative;
+        margin-bottom: 95px;
+
+    &::before{
+        content: "";
+        width:100%;
+        height: 100px;
+        position: absolute;
+        top: -50px;
+        left: 0;
+        background-color: rgb(2, 32, 15);
+        border-radius: 50%;
+        z-index: -1;
+
+    }
+    &::after{
+        content: "";
+        width:100%;
+        height: 100px;
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        background-color: rgb(2, 32, 15);
+        border-radius: 50%;
+        z-index: -1;
+
+    }
+
+    .valeurs{
+        width: 80%;
+        max-width: 1366px;
+    }
+ }
+    .contenair-contact{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 95px;
+    position: relative;
+
+
+    .contact{
+        max-width: 1366px;
+        width: 80%;
+    }
+
+}
+}
+
+
